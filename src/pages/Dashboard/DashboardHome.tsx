@@ -1,27 +1,121 @@
-import { ContainerPage } from "@/components/Base/StyledComponents/ContainerPage";
-import LogoPage from "@/components/Header/NormalComponents/LogoPage";
-import { HeaderPage } from "@/components/Header/StyledComponents/HeaderPage";
-import { MenuOption } from "@/components/Header/StyledComponents/MenuOption";
-import { MenuOptions } from "@/components/Header/StyledComponents/MenuOptions";
-import { ProfileContainer } from "@/components/Header/StyledComponents/ProfileContainer";
-import { PagesApp } from "@/utils/pages";
+import { Doughnut, Line } from "react-chartjs-2";
+import { Chart, registerables } from "chart.js";
+import { OverviewGraphics } from "@/components/Graphics/StyledComponents/OverviewGraphics";
+import { OverviewGraphicsContainer } from "@/components/Graphics/StyledComponents/OverviewGraphicsContainer";
+import { GraphicUnique } from "@/components/Graphics/StyledComponents/GraphicUnique";
+import { ContainerGraphic } from "@/components/Graphics/StyledComponents/ContainerGraphic";
+import { SectionGraphic } from "@/components/Graphics/StyledComponents/SectionGraphic";
+import { ShiftsHistorial } from "@/components/Shifts/StyledComponents/ShiftsHistorial"; 
+
+Chart.register(...registerables);
 
 const DashboardHome = () => {
     return (
-        <ContainerPage>
-            <HeaderPage>
-                <LogoPage />
-                <MenuOptions>
-                    <MenuOption current={true}>{ PagesApp.dashboard }</MenuOption>
-                    <MenuOption current={false}>{ PagesApp.patiens }</MenuOption>
-                    <MenuOption current={false}>{ PagesApp.report }</MenuOption>
-                    <MenuOption current={false}>{ PagesApp.settings }</MenuOption>
-                </MenuOptions>
-                <ProfileContainer>
-                    
-                </ProfileContainer>
-            </HeaderPage>
-        </ContainerPage>
+        <ContainerGraphic>
+            <SectionGraphic>
+                <OverviewGraphics>
+                    <h3>Descripcion</h3>
+                    <OverviewGraphicsContainer>
+                        <GraphicUnique width="15rem" height="12rem">
+                            <Doughnut
+                                data={{
+                                    labels: [
+                                        "Red",
+                                        "Blue",
+                                        "Yellow",
+                                        "Green",
+                                        "Purple",
+                                        "Orange",
+                                    ],
+                                    datasets: [
+                                        {
+                                            label: "# of Votes",
+                                            data: [12, 19, 3, 5, 2, 3],
+                                            borderWidth: 1,
+                                        },
+                                    ],
+                                }}
+                            />
+                        </GraphicUnique>
+                        <GraphicUnique width="15rem" height="12rem">
+                            <Doughnut
+                                data={{
+                                    labels: [
+                                        "Red",
+                                        "Blue",
+                                        "Yellow",
+                                        "Green",
+                                        "Purple",
+                                        "Orange",
+                                    ],
+                                    datasets: [
+                                        {
+                                            label: "# of Votes",
+                                            data: [12, 19, 3, 5, 2, 3],
+                                            borderWidth: 1,
+                                        },
+                                    ],
+                                }}
+                            />
+                        </GraphicUnique>
+                        <GraphicUnique width="15rem" height="12rem">
+                            <Doughnut
+                                data={{
+                                    labels: [
+                                        "Red",
+                                        "Blue",
+                                        "Yellow",
+                                        "Green",
+                                        "Purple",
+                                        "Orange",
+                                    ],
+                                    datasets: [
+                                        {
+                                            label: "# of Votes",
+                                            data: [12, 19, 3, 5, 2, 3],
+                                            borderWidth: 1,
+                                        },
+                                    ],
+                                }}
+                            />
+                        </GraphicUnique>
+                    </OverviewGraphicsContainer>
+                </OverviewGraphics>
+                <OverviewGraphics>
+                    <h3>Metricas generales</h3>
+                    <OverviewGraphicsContainer>
+                        <GraphicUnique width="100%" height="20rem">
+                            <Line
+                                data={{
+                                    labels: [
+                                        "Red",
+                                        "Blue",
+                                        "Yellow",
+                                        "Green",
+                                        "Purple",
+                                        "Orange",
+                                    ],
+                                    datasets: [
+                                        {
+                                            label: "My First Dataset",
+                                            data: [65, 59, 80, 81, 56, 55, 40],
+                                            fill: false,
+                                            borderColor: "rgb(75, 192, 192)",
+                                            tension: 0.1,
+                                        },
+                                    ],
+                                }}
+                            />
+                        </GraphicUnique>
+                    </OverviewGraphicsContainer>
+                </OverviewGraphics>
+            </SectionGraphic>
+            <SectionGraphic>
+                <ShiftsHistorial>
+                    <p>Historial de turnos</p>
+                </ShiftsHistorial>
+            </SectionGraphic>
+        </ContainerGraphic>
     );
 };
 

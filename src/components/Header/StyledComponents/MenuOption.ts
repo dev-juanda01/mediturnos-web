@@ -14,6 +14,6 @@ export const MenuOption = styled.button<ButtonMenu>`
     border-radius: ${(props) => (props.current ? ".5rem" : ".5rem")};
     border: none;
     height: 100%;
-    padding: 0 .5rem;
+    padding: .5rem .85rem;
     cursor: pointer;
 `;
