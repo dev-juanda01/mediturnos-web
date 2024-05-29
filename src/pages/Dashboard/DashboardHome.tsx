@@ -5,11 +5,19 @@ import { OverviewGraphicsContainer } from "@/components/Graphics/StyledComponent
 import { GraphicUnique } from "@/components/Graphics/StyledComponents/GraphicUnique";
 import { ContainerGraphic } from "@/components/Graphics/StyledComponents/ContainerGraphic";
 import { SectionGraphic } from "@/components/Graphics/StyledComponents/SectionGraphic";
-import { ShiftsHistorial } from "@/components/Shifts/StyledComponents/ShiftsHistorial"; 
+import { ShiftsHistorial } from "@/components/Shifts/StyledComponents/ShiftsHistorial";
+import { useEffect } from "react";
+import { getHistoricalShifts } from "@/services/ShiftService";
 
 Chart.register(...registerables);
 
 const DashboardHome = () => {
+    useEffect(() => {
+        (async () => {
+            const shifts = await getHistoricalShifts();            
+        })();
+    }, []);
+
     return (
         <ContainerGraphic>
             <SectionGraphic>
