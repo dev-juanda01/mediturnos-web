@@ -6,17 +6,15 @@ import { GraphicUnique } from "@/components/Graphics/StyledComponents/GraphicUni
 import { ContainerGraphic } from "@/components/Graphics/StyledComponents/ContainerGraphic";
 import { SectionGraphic } from "@/components/Graphics/StyledComponents/SectionGraphic";
 import { ShiftsHistorial } from "@/components/Shifts/StyledComponents/ShiftsHistorial";
-import { useEffect } from "react";
-import { getHistoricalShifts } from "@/services/ShiftService";
+import {
+    ShiftItem,
+    ShiftList,
+} from "@/components/Shifts/StyledComponents/ShiftList";
+import { ShiftInterface } from "@/types";
 
 Chart.register(...registerables);
 
-const DashboardHome = () => {
-    useEffect(() => {
-        (async () => {
-            const shifts = await getHistoricalShifts();            
-        })();
-    }, []);
+const DashboardHome = ({ historicalShifts }: { historicalShifts: Array<ShiftInterface> }) => {
 
     return (
         <ContainerGraphic>
@@ -28,12 +26,12 @@ const DashboardHome = () => {
                             <Doughnut
                                 data={{
                                     labels: [
-                                        "Red",
-                                        "Blue",
-                                        "Yellow",
-                                        "Green",
-                                        "Purple",
-                                        "Orange",
+                                        "Prioritarios",
+                                        "Farmacia general",
+                                        "Genericos",
+                                        "Por demanda",
+                                        "Urgencia",
+                                        "Agendados",
                                     ],
                                     datasets: [
                                         {
@@ -49,12 +47,12 @@ const DashboardHome = () => {
                             <Doughnut
                                 data={{
                                     labels: [
-                                        "Red",
-                                        "Blue",
-                                        "Yellow",
-                                        "Green",
-                                        "Purple",
-                                        "Orange",
+                                        "Cancelados",
+                                        "Completados",
+                                        "Pendientes",
+                                        "En espera",
+                                        "En cola",
+                                        "Eliminados",
                                     ],
                                     datasets: [
                                         {
@@ -70,12 +68,12 @@ const DashboardHome = () => {
                             <Doughnut
                                 data={{
                                     labels: [
-                                        "Red",
-                                        "Blue",
-                                        "Yellow",
-                                        "Green",
-                                        "Purple",
-                                        "Orange",
+                                        "Mensuales",
+                                        "Anuales",
+                                        "Diarios",
+                                        "Semanales",
+                                        "Por hora",
+                                        "Por minuto",
                                     ],
                                     datasets: [
                                         {
@@ -96,16 +94,16 @@ const DashboardHome = () => {
                             <Line
                                 data={{
                                     labels: [
-                                        "Red",
-                                        "Blue",
-                                        "Yellow",
-                                        "Green",
-                                        "Purple",
-                                        "Orange",
+                                        "Cancelados",
+                                        "Completados",
+                                        "Pendientes",
+                                        "En espera",
+                                        "En cola",
+                                        "Eliminados",
                                     ],
                                     datasets: [
                                         {
-                                            label: "My First Dataset",
+                                            label: "Turnos en gestion",
                                             data: [65, 59, 80, 81, 56, 55, 40],
                                             fill: false,
                                             borderColor: "rgb(75, 192, 192)",
@@ -121,6 +119,11 @@ const DashboardHome = () => {
             <SectionGraphic>
                 <ShiftsHistorial>
                     <p>Historial de turnos</p>
+                    <ShiftList>
+                        {historicalShifts.map((shift: ShiftInterface) => (
+                            <ShiftItem>{shift.usuario.nombre} - {shift.tipo} - {shift.estado}</ShiftItem>
+                        ))}
+                    </ShiftList>
                 </ShiftsHistorial>
             </SectionGraphic>
         </ContainerGraphic>
